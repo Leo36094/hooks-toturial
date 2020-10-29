@@ -85,8 +85,8 @@ function Home(props) {
 
   return (
     <div className={cx('login')}>
+      <DemoEffect />
       <DemoMemo />
-      <DemoEffect className={cx('test')} />
       <div className={cx('login-container')}>
         {isLoggedin ? (
           <>
