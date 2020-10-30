@@ -138,3 +138,11 @@ function Home(props) {
 }
 
 export default Home;
+
+
+/**
+ * 
+ * 根據行為整理 feature
+ * 過多的 state 散落在各地，會影響維護體驗
+ * 
+ */

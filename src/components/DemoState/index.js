@@ -1,74 +1,43 @@
-import React, { useState } from 'react';
-import '../App.scss';
-import { login } from '@/utils';
+import React from 'react';
+import classnames from 'classnames/bind';
+import { login } from '../../utlis';
+
+import styles from './style.module.scss';
+
+const cx = classnames.bind(styles);
+
+/**
+ * 1. username
+ * 2. password
+ * 3. loading status
+ * 4. error message
+ *
+ */
 
 function DemoState() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    try {
-      await login({ username, password });
-      setIsLoading(false);
-      setIsLogin(true);
-
-    } catch (error) {
-      setIsLoading(false);
-      setErrorMsg(error)
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const onSubmit = async () => {};
 
   return (
-    <div className="login">
-      <div className="login-container">
-        {isLogin ? (
-          <>
-            <p>Hello {username}</p>
-            <button onClick={onSubmit}>logout</button>
-          </>
-        ) : (
-          <form className="login-form" onSubmit={onSubmit}>
-            <p className="error">{errorMsg && errorMsg}</p>
-            <h1 className="login-item">Please Log in</h1>
-            <input
-              className="login-item login-account"
-              autoComplete='username'
-              placeholder="username"
-              value={username}
-              onChange={(event) => {
-                setUserName(event.currentTarget.value);
-              }}
-            />
-            <input
-              className="login-item login-password"
-              autoComplete='currentPassword'
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.currentTarget.value);
-              }}
-            />
-            <button
-              className="login-button"
-              disabled={isLoading}
-              type="submit"
-            >
-              {isLoading ? 'Login ....' : 'Login'}
-            </button>
-          </form>
-        )}
+    <div className={cx('login')}>
+      <div className={cx('login-container')}>
+        <form className={cx('login-form')} onSubmit={onSubmit}>
+          {/* <p className={cx('error')}>{errMsg && errMsg}</p> */}
+          <h1 className={cx('login-item')}>Please Log in</h1>
+          <input
+            className={cx('login-input')}
+            placeholder="username"
+          />
+          <input
+            className={cx('login-input')}
+            placeholder="password"
+          />
+          <button className={cx('login-button')} type="submit">
+            Login
+          </button>
+        </form>
       </div>
     </div>
   );
 }
 
 export default DemoState;
-

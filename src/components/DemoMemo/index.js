@@ -13,6 +13,10 @@ function CandyDispenser() {
     setCandies((allCandies) => allCandies.filter((c) => c !== candy));
   };
 
+  // const dispense = React.useCallback(candy => {
+  //   setCandies(allCandies => allCandies.filter(c => c !== candy))
+  // }, [])
+
   return (
     <div>
       <h1>Candy Dispenser</h1>
